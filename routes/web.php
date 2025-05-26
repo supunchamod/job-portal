@@ -65,6 +65,8 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/jobs/{job}/apply', [JobController::class, 'apply'])->name('jobs.apply');
     Route::get('/candidate/applied-jobs', [JobController::class, 'appliedJobs'])->name('candidate.appliedJobs');
     Route::post('/jobs/{job}/apply/form', [JobController::class, 'submitApplication'])->name('jobs.apply.form');
+    Route::get('/candidate/applied-search', [JobController::class, 'search'])->name('candidate.applied.search');
+
 
 });
 

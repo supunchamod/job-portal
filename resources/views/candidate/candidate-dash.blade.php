@@ -41,12 +41,10 @@
 								<li class="active"><a href="/candidate-dashboard"><i class="fa-solid fa-gauge-high me-2"></i>User Dashboard</a></li>
 								<li><a href="/my-profile"><i class="fa-regular fa-user me-2"></i>My Profile </a></li>
 								<li><a href="/candidate/resume"><i class="fa-solid fa-file-pdf me-2"></i>My Resumes</a></li>
-								<li><a href="candidate-applied-jobs.html"><i class="fa-regular fa-paper-plane me-2"></i>Applied jobs</a></li>
-								<li><a href="candidate-alert-job.html"><i class="fa-solid fa-bell me-2"></i>Alert Jobs<span class="count-tag bg-warning">4</span></a></li>
-								<li><a href="candidate-saved-jobs.html"><i class="fa-solid fa-bookmark me-2"></i>Shortlist Jobs</a></li>
+								<li><a href="/candidate/applied-jobs"><i class="fa-regular fa-paper-plane me-2"></i>Applied jobs</a></li>
 								<li><a href="candidate-follow-employers.html"><i class="fa-solid fa-user-clock me-2"></i>Following Employers</a></li>
 								<li><a href="candidate-messages.html"><i class="fa-solid fa-comments me-2"></i>Messages<span class="count-tag">4</span></a></li>
-								<li><a href="candidate-change-password.html"><i class="fa-solid fa-unlock-keyhole me-2"></i>Change Password</a></li>
+								<li><a href="/change-password"><i class="fa-solid fa-unlock-keyhole me-2"></i>Change Password</a></li>
 								<li><a href="candidate-delete-account.html"><i class="fa-solid fa-trash-can me-2"></i>Delete Account</a></li>
 								<li><a href="index.html"><i class="fa-solid fa-power-off me-2"></i>Log Out</a></li>
 							</ul>

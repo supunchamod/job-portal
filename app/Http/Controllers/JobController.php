@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Job;
 use App\Models\Company;
 use App\Models\JobApplication;
+use Illuminate\Support\Facades\Auth;
 
 class JobController extends Controller
 {
@@ -81,6 +82,33 @@ class JobController extends Controller
 
         return redirect()->back()->with('success', 'Application submitted successfully!');
     }
+
+    public function appliedJobs()
+    {
+        $user = auth()->user();
+
+         $appliedJobs = JobApplication::with('job')
+        ->where('user_id', auth()->id())
+        ->latest()
+        ->get();
+
+        return view('candidate.applied-job', compact('appliedJobs'));
+    }
+
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+
+        $appliedJobs = Job::where('title', 'like', '%' . $query . '%')
+                    ->orWhere('description', 'like', '%' . $query . '%')
+                    ->orWhere('location', 'like', '%' . $query . '%')
+                    ->with(['company', 'category'])
+                    ->latest()
+                    ->paginate(10);
+
+        return view('candidate.applied-job', compact('appliedJobs', 'query'));
+    }
+
 
 
 
