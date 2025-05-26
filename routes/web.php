@@ -35,6 +35,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::put('/candidate/change-password', [ProfileController::class, 'password'])
+        ->name('candidate.password.change');
+    Route::get('/password/reset', [ProfileController::class, 'index'])->name('password.reset');
+    Route::get('/candidate/delete-account', [ProfileController::class, 'show'])->name('candidate.account.delete');
+    Route::delete('/candidate/delete-account', [ProfileController::class, 'deleteAccount'])->name('candidate.account.destroy');
+
+
 });
 
 Route::middleware(['auth'])->group(function () {

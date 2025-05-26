@@ -44,9 +44,18 @@
 								<li><a href="/candidate/applied-jobs"><i class="fa-regular fa-paper-plane me-2"></i>Applied jobs</a></li>
 								<li><a href="candidate-follow-employers.html"><i class="fa-solid fa-user-clock me-2"></i>Following Employers</a></li>
 								<li><a href="candidate-messages.html"><i class="fa-solid fa-comments me-2"></i>Messages<span class="count-tag">4</span></a></li>
-								<li><a href="/change-password"><i class="fa-solid fa-unlock-keyhole me-2"></i>Change Password</a></li>
-								<li><a href="candidate-delete-account.html"><i class="fa-solid fa-trash-can me-2"></i>Delete Account</a></li>
-								<li><a href="index.html"><i class="fa-solid fa-power-off me-2"></i>Log Out</a></li>
+								<li><a href="/password/reset"><i class="fa-solid fa-unlock-keyhole me-2"></i>Change Password</a></li>
+								<li><a href="/candidate/delete-account"><i class="fa-solid fa-trash-can me-2"></i>Delete Account</a></li>
+								<li>
+									<form method="POST" action="{{ route('logout') }}" id="logout-form">
+										@csrf
+										<a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+											<i class="fa-solid fa-power-off me-2"></i>Log Out
+										</a>
+									</form>
+								</li>
+
+
 							</ul>
 						</div>					
 					</div>
