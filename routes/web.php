@@ -47,11 +47,19 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth'])->group(function () {
     Route::get('/candidate', [HomeController::class, 'candidateDashboard'])->name('candidate.dashboard');
     Route::get('/employer', [HomeController::class, 'employerDashboard'])->name('employer.dashboard');
+    Route::post('/company/{id}/follow', [HomeController::class, 'follow'])->name('company.follow');
+    Route::post('/company/{id}/unfollow', [HomeController::class, 'unfollow'])->name('company.unfollow');
+    Route::post('/reviews', [HomeController::class, 'reviews'])->name('reviews.store');
+
+
 });
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/candidate-profile/edit', [ProfileController::class, 'edit'])->name('candidate-profile.edit');
     Route::post('/candidate-profile/update', [CandidateController::class, 'update'])->name('candidate-profile.update');
+    Route::get('/employer', [CandidateController::class, 'employer'])->name('employer');
+    Route::get('/companies/{slug}', [CandidateController::class, 'show'])->name('company.show');
+
     
 });
 

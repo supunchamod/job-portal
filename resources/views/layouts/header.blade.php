@@ -36,28 +36,7 @@
 									</ul>
 								</li>
 								
-								<li><a href="JavaScript:Void(0);">For Employer<span class="submenu-indicator"></span></a>
-									<ul class="nav-dropdown nav-submenu">
-										<li><a href="JavaScript:Void(0);">Explore Employers<span class="submenu-indicator"></span></a>
-											<ul class="nav-dropdown nav-submenu">
-												<li><a href="employer-grid-1.html">Search Employers 01</a></li>                                    
-												<li><a href="employer-grid-2.html">Search Employers 02</a></li>                                    
-												<li><a href="employer-list-1.html">Search List Employers 01</a></li>
-												<li><a href="employer-half-map.html">Search Employers Map</a></li>
-												<li><a href="employer-half-map-list.html">Search List Employers Map</a></li>												
-											</ul>
-										</li>
-										<li><a href="JavaScript:Void(0);">Employer Detail<span class="submenu-indicator"></span></a>
-											<ul class="nav-dropdown nav-submenu">
-												<li><a href="employer-detail.html">Employer Detail 01</a></li>                                    
-												<li><a href="employer-detail-2.html">Employer Detail 02</a></li>                                    											
-											</ul>
-										</li>
-										<li>
-											<a href="employer-dashboard.html">Employer Dashboard<span class="new-update">New</span></a>                                
-										</li>
-									</ul>
-								</li>
+								<li><a href="/employer">Employers<span class="submenu-indicator"></span></a></li>
 								
 								<li><a href="JavaScript:Void(0);">Pages<span class="submenu-indicator"></span></a>
 									<ul class="nav-dropdown nav-submenu">

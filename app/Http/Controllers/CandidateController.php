@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\UserInformation;
+use App\Models\Company;
 
 class CandidateController extends Controller
 {
@@ -63,9 +64,10 @@ class CandidateController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function employer()
     {
-        //
+        $companies = Company::all();
+        return view('candidate.employer', compact('companies'));
     }
 
     /**
@@ -85,9 +87,14 @@ class CandidateController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        //
+        $company = Company::with('jobs')->where('slug', $slug)->firstOrFail();
+
+        // Paginate reviews, e.g., 5 reviews per page
+        $reviews = $company->reviews()->with('user')->paginate(5);
+
+        return view('candidate.employer-details', compact('company', 'reviews'));
     }
 
     /**

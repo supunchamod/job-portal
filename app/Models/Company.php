@@ -18,7 +18,8 @@ class Company extends Model
         'email',
         'location',
         'company_size',
-        'established'
+        'established',
+        'company_type'
     ];
 
     public function services()
@@ -42,6 +43,16 @@ class Company extends Model
     {
         return $this->established ? 'Est. ' . $this->established : '';
     }
+    public function followers()
+    {
+        return $this->belongsToMany(User::class, 'company_follows')->withTimestamps();
+    }
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
+
+
 
     
 }

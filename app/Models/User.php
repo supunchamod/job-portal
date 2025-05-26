@@ -63,6 +63,11 @@ class User extends Authenticatable
                     ->withTimestamps()
                     ->withPivot('applied_at');
     }
+    public function followedCompanies()
+    {
+        return $this->belongsToMany(Company::class, 'company_follows')->withTimestamps();
+    }
+
 
 
 

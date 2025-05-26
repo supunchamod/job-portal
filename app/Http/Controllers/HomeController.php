@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Job;
 use App\Models\Company;
+use App\Models\Review;
+use Illuminate\Support\Facades\Auth;
+
 
 
 
@@ -92,5 +95,44 @@ class HomeController extends Controller
  
         return view('candidate.index', compact('categories', 'featuredJobs','companies'));
     }
+
+    public function follow($id)
+    {
+        $user = Auth::user();
+        $company = Company::findOrFail($id);
+
+        $user->followedCompanies()->syncWithoutDetaching([$company->id]);
+
+        return back()->with('success', 'You are now following ' . $company->name);
+    }
+
+    public function unfollow($id)
+    {
+        $user = Auth::user();
+        $company = Company::findOrFail($id);
+
+        $user->followedCompanies()->detach($company->id);
+
+        return back()->with('success', 'You have unfollowed ' . $company->name);
+    }
+
+    public function reviews(Request $request)
+    {
+        $request->validate([
+            'company_id' => 'required|exists:companies,id',
+            'rating' => 'required|integer|min:1|max:5',
+            'comment' => 'required|string|max:1000',
+        ]);
+
+        Review::create([
+            'user_id' => auth()->id(),
+            'company_id' => $request->company_id,
+            'rating' => $request->rating,
+            'comment' => $request->comment,
+        ]);
+
+        return back()->with('success', 'Review submitted successfully!');
+    }
+
 
 }
