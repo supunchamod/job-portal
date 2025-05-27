@@ -7,6 +7,9 @@ use App\Models\Category;
 use App\Models\Job;
 use App\Models\Company;
 use App\Models\Review;
+use App\Models\Message;
+use App\Models\User;
+
 use Illuminate\Support\Facades\Auth;
 
 
@@ -51,8 +54,13 @@ class HomeController extends Controller
         ->orderByDesc('jobs_count')
         ->take(8) // Limit to 8 top companies
         ->get();
+
+        $candidates = User::where('user_type', 'candidate')
+        ->with('information') // if you store extra info in related model
+        ->paginate(12);
+
  
-        return view('index', compact('categories', 'featuredJobs','companies'));
+        return view('index', compact('categories', 'featuredJobs','companies','candidates'));
     }
 
      public function candidateDashboard()
@@ -133,6 +141,47 @@ class HomeController extends Controller
 
         return back()->with('success', 'Review submitted successfully!');
     }
+
+    public function saveJob(Request $request, $jobId)
+    {
+        $user = auth()->user();
+
+        // Check if already saved
+        if ($user->savedJobs()->where('job_id', $jobId)->exists()) {
+            return response()->json(['message' => 'Job already saved'], 409);
+        }
+
+        $user->savedJobs()->attach($jobId);
+
+        return response()->json(['message' => 'Job saved successfully']);
+    }
+
+    public function unsaveJob(Request $request, $jobId)
+    {
+        $user = auth()->user();
+        $user->savedJobs()->detach($jobId);
+
+        return response()->json(['message' => 'Job removed from saved list']);
+    }   
+
+
+    public function sendMessage(Request $request, $userId)
+    {
+        $request->validate(['message' => 'required|string']);
+
+        Message::create([
+            'sender_id' => auth()->id(),
+            'receiver_id' => $userId,
+            'message' => $request->message,
+        ]);
+
+        return redirect()->back()->with('success', 'Message sent!');
+    }
+
+    
+
+
+
 
 
 }

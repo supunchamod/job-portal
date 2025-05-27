@@ -67,6 +67,29 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Company::class, 'company_follows')->withTimestamps();
     }
+    public function savedJobs()
+    {
+        return $this->belongsToMany(Job::class, 'saved_jobs')->withTimestamps();
+    }
+
+    public function sentMessages()
+    {
+        return $this->hasMany(Message::class, 'sender_id');
+    }
+
+    public function receivedMessages()
+    {
+        return $this->hasMany(Message::class, 'receiver_id');
+    }
+
+    public function getIsOnlineAttribute()
+    {
+        // You can customize how you check online status
+        return cache()->has('user-is-online-' . $this->id);
+    }
+
+
+
 
 
 

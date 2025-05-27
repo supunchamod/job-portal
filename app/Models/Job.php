@@ -37,5 +37,10 @@ class Job extends Model
                     ->withTimestamps()
                     ->withPivot('applied_at');
     }
+    public function savedByUsers()
+    {
+        return $this->belongsToMany(User::class, 'saved_jobs')->withTimestamps();
+    }
+
 
 }

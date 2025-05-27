@@ -6,6 +6,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\CandidateController;
 use App\Http\Controllers\ResumeController;
+use App\Http\Controllers\MessageController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -50,7 +52,8 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/company/{id}/follow', [HomeController::class, 'follow'])->name('company.follow');
     Route::post('/company/{id}/unfollow', [HomeController::class, 'unfollow'])->name('company.unfollow');
     Route::post('/reviews', [HomeController::class, 'reviews'])->name('reviews.store');
-
+    Route::post('/jobs/{jobId}/save', [HomeController::class, 'saveJob'])->name('jobs.save');
+    Route::post('/jobs/{jobId}/unsave', [HomeController::class, 'unsaveJob'])->name('jobs.unsave');
 
 });
 
@@ -59,8 +62,9 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/candidate-profile/update', [CandidateController::class, 'update'])->name('candidate-profile.update');
     Route::get('/employer', [CandidateController::class, 'employer'])->name('employer');
     Route::get('/companies/{slug}', [CandidateController::class, 'show'])->name('company.show');
-
-    
+    Route::get('/follow/company', [CandidateController::class, 'followCompany'])->name('candidate.followed.companies');
+    Route::get('/saved-jobs', [CandidateController::class, 'savedJobs'])->name('candidate.saved.jobs');
+    Route::delete('/job/unsave/{id}', [CandidateController::class, 'unsave'])->name('job.unsave');  
 });
 
 Route::middleware(['auth'])->group(function () {
@@ -81,9 +85,14 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/candidate/applied-jobs', [JobController::class, 'appliedJobs'])->name('candidate.appliedJobs');
     Route::post('/jobs/{job}/apply/form', [JobController::class, 'submitApplication'])->name('jobs.apply.form');
     Route::get('/candidate/applied-search', [JobController::class, 'search'])->name('candidate.applied.search');
-
-
 });
+
+Route::middleware('auth')->group(function () {
+    Route::get('/messages', [MessageController::class, 'index'])->name('messages.index');
+    Route::get('/messages/{userId}', [MessageController::class, 'show'])->name('messages.show');
+    Route::post('/messages', [MessageController::class, 'store'])->name('messages.store');
+});
+  
 
 
 

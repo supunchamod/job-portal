@@ -40,7 +40,10 @@
 									</div>
 									<div class="jbs-roots-y6 py-3">
 										<button class="btn btn-primary fw-medium px-lg-5 px-4 me-3" type="button" data-bs-toggle="modal" data-bs-target="#applyjob">Apply Job</button>
-										<button class="btn btn-whites fw-medium px-lg-5 px-4" type="button">Save job</button>
+										<button id="saveJobBtn" class="btn btn-whites fw-medium px-lg-5 px-4" onclick="saveJob({{ $job->id }})">
+											{{ auth()->check() && auth()->user()->savedJobs->contains($job->id) ? 'Saved job' : 'Save job' }}
+										</button>
+
 									</div>
 								</div>
 							</div>
@@ -137,7 +140,7 @@
 										</div>
 									</div>
 								</div>
-								<div class="jbs-blox-footer">
+								<!-- <div class="jbs-blox-footer">
 									<div class="blox-first-footer">
 										<div class="ftr-share-block">
 											<ul>
@@ -149,7 +152,7 @@
 											</ul>
 										</div>
 									</div>
-								</div>
+								</div> -->
 							</div>
 							
 						</div>
@@ -390,5 +393,45 @@
 			</section>
 			<!-- ============================ Call To Action End ================================== -->
 	
+			<script>
+    function saveJob(jobId) {
+        fetch(`/jobs/${jobId}/save`, {
+            method: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => response.json().then(data => ({
+            status: response.status,
+            body: data
+        })))
+        .then(({ status, body }) => {
+            if (status === 200) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Saved!',
+                    text: body.message,
+                    timer: 2000,
+                    showConfirmButton: false
+                });
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: body.message || 'Something went wrong.'
+                });
+            }
+        })
+        .catch(error => {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'An unexpected error occurred.'
+            });
+        });
+    }
+</script>
+
 
 @endsecction

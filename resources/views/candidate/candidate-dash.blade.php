@@ -42,8 +42,9 @@
 								<li><a href="/my-profile"><i class="fa-regular fa-user me-2"></i>My Profile </a></li>
 								<li><a href="/candidate/resume"><i class="fa-solid fa-file-pdf me-2"></i>My Resumes</a></li>
 								<li><a href="/candidate/applied-jobs"><i class="fa-regular fa-paper-plane me-2"></i>Applied jobs</a></li>
-								<li><a href="candidate-follow-employers.html"><i class="fa-solid fa-user-clock me-2"></i>Following Employers</a></li>
-								<li><a href="candidate-messages.html"><i class="fa-solid fa-comments me-2"></i>Messages<span class="count-tag">4</span></a></li>
+								<li><a href="/saved-jobs"><i class="fa-solid fa-bookmark me-2"></i>Saved Jobs</a></li>
+								<li><a href="/follow/company"><i class="fa-solid fa-user-clock me-2"></i>Following Employers</a></li>
+								<li><a href="{{ route('messages.show', $user->id) }}"><i class="fa-solid fa-comments me-2"></i>Messages<span class="count-tag">4</span></a></li>
 								<li><a href="/password/reset"><i class="fa-solid fa-unlock-keyhole me-2"></i>Change Password</a></li>
 								<li><a href="/candidate/delete-account"><i class="fa-solid fa-trash-can me-2"></i>Delete Account</a></li>
 								<li>

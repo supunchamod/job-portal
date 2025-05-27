@@ -101,12 +101,12 @@
                                                 </div>
                                                 <ul>
                                                     <li><a href="{{ route('candidate.dashboard') }}"><i class="fa fa-tachometer-alt"></i>Dashboard</a></li>                                  
-                                                    <li><a href="#"><i class="fa fa-user-tie"></i>My Profile</a></li>                                 
-                                                    <li><a href="#"><i class="fa fa-file"></i>My Resume</a></li>
+                                                    <li><a href="/my-profile"><i class="fa fa-user-tie"></i>My Profile</a></li>                                 
+                                                    <li><a href="/candidate/resume"><i class="fa fa-file"></i>My Resume</a></li>
                                                     <li><a href="#"><i class="fa-solid fa-bookmark"></i>Saved Resume</a></li>
                                                     <li><a href="#"><i class="fa fa-envelope"></i>Messages</a></li>
-                                                    <li><a href="#"><i class="fa fa-unlock-alt"></i>Change Password</a></li>
-                                                    <li><a href="#"><i class="fa-solid fa-trash-can"></i>Delete Account</a></li>
+                                                    <li><a href="/password/reset"><i class="fa fa-unlock-alt"></i>Change Password</a></li>
+                                                    <li><a href="/candidate/delete-account"><i class="fa-solid fa-trash-can"></i>Delete Account</a></li>
                                                 </ul>
                                             </div>
                                         </div>

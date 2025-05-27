@@ -340,316 +340,55 @@
 					<div class="row justify-content-center gx-4 gy-4">
 					
 						<!-- Single Item -->
+												@foreach ($candidates as $candidate)
 						<div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12">
 							<div class="jbs-grid-usrs-block border">
 								<div class="jbs-grid-usrs-thumb">
 									<div class="jbs-grid-yuo">
-										<a href="candidate-detail.html"><figure><img src="assets/img/team-1.jpg" class="img-fluid circle" alt=""></figure></a>
+										<a href="">
+											<figure>
+												<img src="{{ asset('storage/' . $candidate->information->profile_image) }}" class="img-fluid circle" alt="">
+											</figure>
+										</a>
 									</div>
 								</div>
 								<div class="jbs-grid-usrs-caption">
 									<div class="jbs-kioyer">
 										<div class="jbs-kioyer-groups">
-											<span class="fa-solid fa-star active"></span>
-											<span class="fa-solid fa-star active"></span>
-											<span class="fa-solid fa-star active"></span>
-											<span class="fa-solid fa-star active"></span>
-											<span class="fa-solid fa-star"></span>
-											<span class="aal-reveis">4.6</span>
 										</div>
 									</div>
 									<div class="jbs-tiosk">
-										<h4 class="jbs-tiosk-title"><a href="candidate-detail.html">Barbara T. Jean</a></h4>
-										<div class="jbs-tiosk-subtitle"><span>Sr. Web Designer</span></div>
+										<h4 class="jbs-tiosk-title">
+											<a href="">
+												{{ $candidate->name }}
+											</a>
+										</h4>
+										<div class="jbs-tiosk-subtitle">
+											<span>{{ $candidate->information->job_title ?? 'N/A' }}</span>
+										</div>
 									</div>
 								</div>
 								<div class="jbs-grid-usrs-info">
 									<div class="jbs-info-ico-style bold">
-										<div class="jbs-single-y1 style-2"><span><i class="fa-solid fa-sack-dollar"></i></span>70/H</div>
-										<div class="jbs-single-y1 style-3"><span><i class="fa-solid fa-coins"></i></span>5 Years exp.</div>
+										<div class="jbs-single-y1 style-2">
+											<span><i class="fa-solid fa-graduation-cap"></i></span>
+											{{ $candidate->information->education ?? 'N/A' }}
+										</div>
+										<div class="jbs-single-y1 style-3">
+											<span><i class="fa-solid fa-coins"></i></span>
+											{{ $candidate->information->experience ?? 0 }} Years exp.
+										</div>
 									</div>
 								</div>
 								<div class="jbs-grid-usrs-contact">
 									<div class="jbs-btn-groups">
 										<a href="#" class="btn btn-md btn-gray px-4">Message</a>
-										<a href="candidate-detail.html" class="btn btn-md btn-light-primary px-4">View Detail</a>
+										<a href="" class="btn btn-md btn-light-primary px-4">View Detail</a>
 									</div>
 								</div>
 							</div>
 						</div>
-						
-						<!-- Single Item -->
-						<div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12">
-							<div class="jbs-grid-usrs-block border">
-								<div class="jbs-grid-usrs-thumb">
-									<div class="jbs-grid-yuo">
-										<a href="candidate-detail.html"><figure><img src="assets/img/team-2.jpg" class="img-fluid circle" alt=""></figure></a>
-									</div>
-								</div>
-								<div class="jbs-grid-usrs-caption">
-									<div class="jbs-kioyer">
-										<div class="jbs-kioyer-groups">
-											<span class="fa-solid fa-star active"></span>
-											<span class="fa-solid fa-star active"></span>
-											<span class="fa-solid fa-star active"></span>
-											<span class="fa-solid fa-star active"></span>
-											<span class="fa-solid fa-star"></span>
-											<span class="aal-reveis">4.7</span>
-										</div>
-									</div>
-									<div class="jbs-tiosk">
-										<h4 class="jbs-tiosk-title"><a href="candidate-detail.html">Linda D. Strong</a></h4>
-										<div class="jbs-tiosk-subtitle"><span>Front-End Developer</span></div>
-									</div>
-								</div>
-								<div class="jbs-grid-usrs-info">
-									<div class="jbs-info-ico-style bold">
-										<div class="jbs-single-y1 style-2"><span><i class="fa-solid fa-sack-dollar"></i></span>50/H</div>
-										<div class="jbs-single-y1 style-3"><span><i class="fa-solid fa-coins"></i></span>3 Years exp.</div>
-									</div>
-								</div>
-								<div class="jbs-grid-usrs-contact">
-									<div class="jbs-btn-groups">
-										<a href="#" class="btn btn-md btn-gray px-4">Message</a>
-										<a href="candidate-detail.html" class="btn btn-md btn-light-primary px-4">View Detail</a>
-									</div>
-								</div>
-							</div>
-						</div>
-						
-						<!-- Single Item -->
-						<div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12">
-							<div class="jbs-grid-usrs-block border">
-								<div class="jbs-grid-usrs-thumb">
-									<div class="jbs-grid-yuo">
-										<a href="candidate-detail.html"><figure><img src="assets/img/team-3.jpg" class="img-fluid circle" alt=""></figure></a>
-									</div>
-								</div>
-								<div class="jbs-grid-usrs-caption">
-									<div class="jbs-kioyer">
-										<div class="jbs-kioyer-groups">
-											<span class="fa-solid fa-star active"></span>
-											<span class="fa-solid fa-star active"></span>
-											<span class="fa-solid fa-star active"></span>
-											<span class="fa-solid fa-star active"></span>
-											<span class="fa-solid fa-star"></span>
-											<span class="aal-reveis">4.5</span>
-										</div>
-									</div>
-									<div class="jbs-tiosk">
-										<h4 class="jbs-tiosk-title"><a href="candidate-detail.html">Marylyn A. Jefferson</a></h4>
-										<div class="jbs-tiosk-subtitle"><span>Shopify Expert</span></div>
-									</div>
-								</div>
-								<div class="jbs-grid-usrs-info">
-									<div class="jbs-info-ico-style bold">
-										<div class="jbs-single-y1 style-2"><span><i class="fa-solid fa-sack-dollar"></i></span>65/H</div>
-										<div class="jbs-single-y1 style-3"><span><i class="fa-solid fa-coins"></i></span>4 Years exp.</div>
-									</div>
-								</div>
-								<div class="jbs-grid-usrs-contact">
-									<div class="jbs-btn-groups">
-										<a href="#" class="btn btn-md btn-gray px-4">Message</a>
-										<a href="candidate-detail.html" class="btn btn-md btn-light-primary px-4">View Detail</a>
-									</div>
-								</div>
-							</div>
-						</div>
-						
-						<!-- Single Item -->
-						<div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12">
-							<div class="jbs-grid-usrs-block border">
-								<div class="jbs-grid-usrs-thumb">
-									<div class="jbs-grid-yuo">
-										<a href="candidate-detail.html"><figure><img src="assets/img/team-4.jpg" class="img-fluid circle" alt=""></figure></a>
-									</div>
-								</div>
-								<div class="jbs-grid-usrs-caption">
-									<div class="jbs-kioyer">
-										<div class="jbs-kioyer-groups">
-											<span class="fa-solid fa-star active"></span>
-											<span class="fa-solid fa-star active"></span>
-											<span class="fa-solid fa-star active"></span>
-											<span class="fa-solid fa-star active"></span>
-											<span class="fa-solid fa-star"></span>
-											<span class="aal-reveis">4.6</span>
-										</div>
-									</div>
-									<div class="jbs-tiosk">
-										<h4 class="jbs-tiosk-title"><a href="candidate-detail.html">Edward K. Buckler</a></h4>
-										<div class="jbs-tiosk-subtitle"><span>WordPress Developer</span></div>
-									</div>
-								</div>
-								<div class="jbs-grid-usrs-info">
-									<div class="jbs-info-ico-style bold">
-										<div class="jbs-single-y1 style-2"><span><i class="fa-solid fa-sack-dollar"></i></span>60/H</div>
-										<div class="jbs-single-y1 style-3"><span><i class="fa-solid fa-coins"></i></span>3 Years exp.</div>
-									</div>
-								</div>
-								<div class="jbs-grid-usrs-contact">
-									<div class="jbs-btn-groups">
-										<a href="#" class="btn btn-md btn-gray px-4">Message</a>
-										<a href="candidate-detail.html" class="btn btn-md btn-light-primary px-4">View Detail</a>
-									</div>
-								</div>
-							</div>
-						</div>
-						
-						<!-- Single Item -->
-						<div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12">
-							<div class="jbs-grid-usrs-block border">
-								<div class="jbs-grid-usrs-thumb">
-									<div class="jbs-grid-yuo">
-										<a href="candidate-detail.html"><figure><img src="assets/img/team-5.jpg" class="img-fluid circle" alt=""></figure></a>
-									</div>
-								</div>
-								<div class="jbs-grid-usrs-caption">
-									<div class="jbs-kioyer">
-										<div class="jbs-kioyer-groups">
-											<span class="fa-solid fa-star active"></span>
-											<span class="fa-solid fa-star active"></span>
-											<span class="fa-solid fa-star active"></span>
-											<span class="fa-solid fa-star active"></span>
-											<span class="fa-solid fa-star"></span>
-											<span class="aal-reveis">4.8</span>
-										</div>
-									</div>
-									<div class="jbs-tiosk">
-										<h4 class="jbs-tiosk-title"><a href="candidate-detail.html">Howard S. Lopez</a></h4>
-										<div class="jbs-tiosk-subtitle"><span>Magento Developer</span></div>
-									</div>
-								</div>
-								<div class="jbs-grid-usrs-info">
-									<div class="jbs-info-ico-style bold">
-										<div class="jbs-single-y1 style-2"><span><i class="fa-solid fa-sack-dollar"></i></span>75/H</div>
-										<div class="jbs-single-y1 style-3"><span><i class="fa-solid fa-coins"></i></span>6 Years exp.</div>
-									</div>
-								</div>
-								<div class="jbs-grid-usrs-contact">
-									<div class="jbs-btn-groups">
-										<a href="#" class="btn btn-md btn-gray px-4">Message</a>
-										<a href="candidate-detail.html" class="btn btn-md btn-light-primary px-4">View Detail</a>
-									</div>
-								</div>
-							</div>
-						</div>
-						
-						<!-- Single Item -->
-						<div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12">
-							<div class="jbs-grid-usrs-block border">
-								<div class="jbs-grid-usrs-thumb">
-									<div class="jbs-grid-yuo">
-										<a href="candidate-detail.html"><figure><img src="assets/img/team-6.jpg" class="img-fluid circle" alt=""></figure></a>
-									</div>
-								</div>
-								<div class="jbs-grid-usrs-caption">
-									<div class="jbs-kioyer">
-										<div class="jbs-kioyer-groups">
-											<span class="fa-solid fa-star active"></span>
-											<span class="fa-solid fa-star active"></span>
-											<span class="fa-solid fa-star active"></span>
-											<span class="fa-solid fa-star active"></span>
-											<span class="fa-solid fa-star"></span>
-											<span class="aal-reveis">4.9</span>
-										</div>
-									</div>
-									<div class="jbs-tiosk">
-										<h4 class="jbs-tiosk-title"><a href="candidate-detail.html">Frank T. Reeves</a></h4>
-										<div class="jbs-tiosk-subtitle"><span>Sr. UI/UX Designer</span></div>
-									</div>
-								</div>
-								<div class="jbs-grid-usrs-info">
-									<div class="jbs-info-ico-style bold">
-										<div class="jbs-single-y1 style-2"><span><i class="fa-solid fa-sack-dollar"></i></span>80/H</div>
-										<div class="jbs-single-y1 style-3"><span><i class="fa-solid fa-coins"></i></span>7 Years exp.</div>
-									</div>
-								</div>
-								<div class="jbs-grid-usrs-contact">
-									<div class="jbs-btn-groups">
-										<a href="#" class="btn btn-md btn-gray px-4">Message</a>
-										<a href="candidate-detail.html" class="btn btn-md btn-light-primary px-4">View Detail</a>
-									</div>
-								</div>
-							</div>
-						</div>
-						
-						<!-- Single Item -->
-						<div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12">
-							<div class="jbs-grid-usrs-block border">
-								<div class="jbs-grid-usrs-thumb">
-									<div class="jbs-grid-yuo">
-										<a href="candidate-detail.html"><figure><img src="assets/img/team-7.jpg" class="img-fluid circle" alt=""></figure></a>
-									</div>
-								</div>
-								<div class="jbs-grid-usrs-caption">
-									<div class="jbs-kioyer">
-										<div class="jbs-kioyer-groups">
-											<span class="fa-solid fa-star active"></span>
-											<span class="fa-solid fa-star active"></span>
-											<span class="fa-solid fa-star active"></span>
-											<span class="fa-solid fa-star active"></span>
-											<span class="fa-solid fa-star"></span>
-											<span class="aal-reveis">4.6</span>
-										</div>
-									</div>
-									<div class="jbs-tiosk">
-										<h4 class="jbs-tiosk-title"><a href="candidate-detail.html">Joseph R. Marshall</a></h4>
-										<div class="jbs-tiosk-subtitle"><span>Laravel Developer</span></div>
-									</div>
-								</div>
-								<div class="jbs-grid-usrs-info">
-									<div class="jbs-info-ico-style bold">
-										<div class="jbs-single-y1 style-2"><span><i class="fa-solid fa-sack-dollar"></i></span>65/H</div>
-										<div class="jbs-single-y1 style-3"><span><i class="fa-solid fa-coins"></i></span>4.5 Years exp.</div>
-									</div>
-								</div>
-								<div class="jbs-grid-usrs-contact">
-									<div class="jbs-btn-groups">
-										<a href="#" class="btn btn-md btn-gray px-4">Message</a>
-										<a href="candidate-detail.html" class="btn btn-md btn-light-primary px-4">View Detail</a>
-									</div>
-								</div>
-							</div>
-						</div>
-						
-						<!-- Single Item -->
-						<div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12">
-							<div class="jbs-grid-usrs-block border">
-								<div class="jbs-grid-usrs-thumb">
-									<div class="jbs-grid-yuo">
-										<a href="candidate-detail.html"><figure><img src="assets/img/team-8.jpg" class="img-fluid circle" alt=""></figure></a>
-									</div>
-								</div>
-								<div class="jbs-grid-usrs-caption">
-									<div class="jbs-kioyer">
-										<div class="jbs-kioyer-groups">
-											<span class="fa-solid fa-star active"></span>
-											<span class="fa-solid fa-star active"></span>
-											<span class="fa-solid fa-star active"></span>
-											<span class="fa-solid fa-star active"></span>
-											<span class="fa-solid fa-star"></span>
-											<span class="aal-reveis">4.7</span>
-										</div>
-									</div>
-									<div class="jbs-tiosk">
-										<h4 class="jbs-tiosk-title"><a href="candidate-detail.html">Kr. Dhananjay Preet</a></h4>
-										<div class="jbs-tiosk-subtitle"><span>Sr. Front-End Developer</span></div>
-									</div>
-								</div>
-								<div class="jbs-grid-usrs-info">
-									<div class="jbs-info-ico-style bold">
-										<div class="jbs-single-y1 style-2"><span><i class="fa-solid fa-sack-dollar"></i></span>45/H</div>
-										<div class="jbs-single-y1 style-3"><span><i class="fa-solid fa-coins"></i></span>8 Years exp.</div>
-									</div>
-								</div>
-								<div class="jbs-grid-usrs-contact">
-									<div class="jbs-btn-groups">
-										<a href="#" class="btn btn-md btn-gray px-4">Message</a>
-										<a href="candidate-detail.html" class="btn btn-md btn-light-primary px-4">View Detail</a>
-									</div>
-								</div>
-							</div>
-						</div>
+						@endforeach	
 						
 					</div>
 					

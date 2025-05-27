@@ -97,6 +97,53 @@ class CandidateController extends Controller
         return view('candidate.employer-details', compact('company', 'reviews'));
     }
 
+    public function followCompany(Request $request)
+    {
+        $user = auth()->user();
+        $search = $request->input('search');
+
+        $companies = $user->followedCompanies()
+            ->when($search, function ($query, $search) {
+                $query->where(function ($q) use ($search) {
+                    $q->where('name', 'like', '%' . $search . '%')
+                    ->orWhere('location', 'like', '%' . $search . '%');
+                });
+            })
+            ->paginate(10)
+            ->withQueryString(); // keeps search term in pagination links
+
+        return view('candidate.follow-company', compact('companies'));
+    }
+
+    public function savedJobs(Request $request)
+    {
+        $user = auth()->user();
+
+        $query = $user->savedJobs()->with('company');
+
+        if ($request->filled('search')) {
+            $query->where(function ($q) use ($request) {
+                $q->where('title', 'like', '%' . $request->search . '%')
+                ->orWhere('location', 'like', '%' . $request->search . '%')
+                ->orWhereHas('company', function ($q) use ($request) {
+                    $q->where('name', 'like', '%' . $request->search . '%');
+                });
+            });
+        }
+
+        $jobs = $query->latest()->paginate(10);
+
+        return view('candidate.saved-job', compact('jobs'));
+    }
+
+
+    public function unsave($id)
+    {
+        auth()->user()->savedJobs()->detach($id);
+        return back()->with('success', 'Job removed from saved list.');
+    }
+
+
     /**
      * Show the form for editing the specified resource.
      *
