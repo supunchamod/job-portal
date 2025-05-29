@@ -21,6 +21,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role'
+
     ];
 
     /**
@@ -44,12 +46,12 @@ class User extends Authenticatable
 
     public function isCandidate()
     {
-        return $this->user_type === 'candidate';
+        return $this->role === 'candidate';
     }
 
     public function isEmployer()
     {
-        return $this->user_type === 'employer';
+        return $this->role === 'employer';
     }
 
     public function information()

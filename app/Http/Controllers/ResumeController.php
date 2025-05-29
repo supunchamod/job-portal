@@ -6,6 +6,7 @@ use App\Models\Education;
 use App\Models\Experience;
 use App\Models\Award;
 use Illuminate\Support\Facades\Auth;
+use App\Services\NotificationService;
 
 use Illuminate\Http\Request;
 
@@ -63,6 +64,9 @@ class ResumeController extends Controller
             'file_path' => $filePath,
             'file_type' => $file->getClientOriginalExtension(),
         ]);
+
+        NotificationService::create(Auth::id(), 'resume_uploaded', 'You have uploaded your resume successfully.');
+
 
         return redirect()->back()->with('success', 'Resume uploaded successfully.');
     }

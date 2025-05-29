@@ -47,11 +47,11 @@
                                             </div>
 
                                             <div class="form-floating mb-4">
-                                                <select name="user_type" class="form-select" required>
-                                                    <option value="candidate" {{ old('user_type') == 'candidate' ? 'selected' : '' }}>Candidate</option>
-                                                    <option value="employer" {{ old('user_type') == 'employer' ? 'selected' : '' }}>Employer</option>
+                                                <select name="role" class="form-select" required>
+                                                    <option value="candidate" {{ old('role') == 'candidate' ? 'selected' : '' }}>Candidate</option>
+                                                    <option value="employer" {{ old('role') == 'employer' ? 'selected' : '' }}>Employer</option>
                                                 </select>
-                                                <label for="user_type">Register As</label>
+                                                <label for="role">Register As</label>
                                             </div>
 
                                             <div class="form-floating mb-4">

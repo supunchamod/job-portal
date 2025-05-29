@@ -28,15 +28,16 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
         $request->session()->regenerate();
 
-        $user = Auth::user();
+        $url = "dashboard";
 
-        if ($user->role === 'candidate') {
-            return redirect()->route('candidate.dashboard');
-        } elseif ($user->role === 'employer') {
-            return redirect()->route('employer.dashboard');
+        if ($request->user()->role == "candidate") {
+            $url = "candidate";
+        } else if($request->user()->role == "employer"){
+            $url = "employer";
         }
 
-        return redirect('/');
+        return redirect()->intended($url);
+
     }
 
     /**

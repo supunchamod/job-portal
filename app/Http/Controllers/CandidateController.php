@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\UserInformation;
 use App\Models\Company;
+use App\Services\NotificationService;
+
 
 class CandidateController extends Controller
 {
@@ -56,6 +58,8 @@ class CandidateController extends Controller
             $data
         );
 
+        NotificationService::create(auth()->id(), 'profile_updated', 'Your profile was updated.');
+
         return back()->with('success', 'Profile updated successfully!');
     }
 
@@ -94,7 +98,10 @@ class CandidateController extends Controller
         // Paginate reviews, e.g., 5 reviews per page
         $reviews = $company->reviews()->with('user')->paginate(5);
 
-        return view('candidate.employer-details', compact('company', 'reviews'));
+        $user = auth()->user();
+        $notifications = $user->notifications()->latest()->take(5)->get();
+
+        return view('candidate.employer-details', compact('company', 'reviews','notifications'));
     }
 
     public function followCompany(Request $request)

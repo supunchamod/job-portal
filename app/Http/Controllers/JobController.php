@@ -8,6 +8,8 @@ use App\Models\Job;
 use App\Models\Company;
 use App\Models\JobApplication;
 use Illuminate\Support\Facades\Auth;
+use App\Services\NotificationService;
+
 
 class JobController extends Controller
 {
@@ -37,7 +39,11 @@ class JobController extends Controller
         // Get categories with job counts
         $categories = Category::withCount('jobs')->get();
 
-        return view('jobs.jobs', compact('jobs', 'categories'));
+        $user = auth()->user();
+        $notifications = $user->notifications()->latest()->take(5)->get();
+
+
+        return view('jobs.jobs', compact('jobs', 'categories','notifications'));
     }
 
     public function apply($jobId)
@@ -50,6 +56,8 @@ class JobController extends Controller
         }
 
         $user->appliedJobs()->attach($jobId, ['applied_at' => now()]);
+
+        NotificationService::create(auth()->id(), 'job_applied', 'You applied for a job.');
 
         return back()->with('success', 'Job application submitted successfully!');
     }
@@ -79,6 +87,8 @@ class JobController extends Controller
             'resume_path' => $path,
             'create_alert' => $request->has('create_alert'),
         ]);
+
+        NotificationService::create(auth()->id(), 'job_applied', 'You applied for a job.');
 
         return redirect()->back()->with('success', 'Application submitted successfully!');
     }
@@ -141,7 +151,9 @@ class JobController extends Controller
      */
     public function show(Job $job)
     {
-        return view('jobs.show', compact('job'));
+        $user = auth()->user();
+        $notifications = $user->notifications()->latest()->take(5)->get();
+        return view('jobs.show', compact('job','notifications'));
     }
 
     /**

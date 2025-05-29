@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('user_type')->default('candidate'); // or nullable if you prefer
+            $table->string('role')->default('candidate'); // or nullable if you prefer
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

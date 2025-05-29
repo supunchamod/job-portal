@@ -325,75 +325,7 @@
 			
 			
 			<!-- ============================ Hire Experts Start ================================== -->
-			<section>
-				<div class="container">
-				
-					<div class="row justify-content-center">
-						<div class="col-xl-6 col-lg-7 col-md-10 text-center">
-							<div class="sec-heading center">
-								<h2>Hire Talents & Experts</h2>
-								<p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores</p>
-							</div>
-						</div>
-					</div>
-				
-					<div class="row justify-content-center gx-4 gy-4">
-					
-						<!-- Single Item -->
-												@foreach ($candidates as $candidate)
-						<div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12">
-							<div class="jbs-grid-usrs-block border">
-								<div class="jbs-grid-usrs-thumb">
-									<div class="jbs-grid-yuo">
-										<a href="">
-											<figure>
-												<img src="{{ asset('storage/' . $candidate->information->profile_image) }}" class="img-fluid circle" alt="">
-											</figure>
-										</a>
-									</div>
-								</div>
-								<div class="jbs-grid-usrs-caption">
-									<div class="jbs-kioyer">
-										<div class="jbs-kioyer-groups">
-										</div>
-									</div>
-									<div class="jbs-tiosk">
-										<h4 class="jbs-tiosk-title">
-											<a href="">
-												{{ $candidate->name }}
-											</a>
-										</h4>
-										<div class="jbs-tiosk-subtitle">
-											<span>{{ $candidate->information->job_title ?? 'N/A' }}</span>
-										</div>
-									</div>
-								</div>
-								<div class="jbs-grid-usrs-info">
-									<div class="jbs-info-ico-style bold">
-										<div class="jbs-single-y1 style-2">
-											<span><i class="fa-solid fa-graduation-cap"></i></span>
-											{{ $candidate->information->education ?? 'N/A' }}
-										</div>
-										<div class="jbs-single-y1 style-3">
-											<span><i class="fa-solid fa-coins"></i></span>
-											{{ $candidate->information->experience ?? 0 }} Years exp.
-										</div>
-									</div>
-								</div>
-								<div class="jbs-grid-usrs-contact">
-									<div class="jbs-btn-groups">
-										<a href="#" class="btn btn-md btn-gray px-4">Message</a>
-										<a href="" class="btn btn-md btn-light-primary px-4">View Detail</a>
-									</div>
-								</div>
-							</div>
-						</div>
-						@endforeach	
-						
-					</div>
-					
-				</div>		
-			</section>
+		
 			<!-- ============================ Hire Experts End ================================== -->
 			
 			
