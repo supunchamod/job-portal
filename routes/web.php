@@ -7,6 +7,8 @@ use App\Http\Controllers\JobController;
 use App\Http\Controllers\CandidateController;
 use App\Http\Controllers\ResumeController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\EmployerController;
+
 
 
 /*
@@ -66,6 +68,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/follow/company', [CandidateController::class, 'followCompany'])->name('candidate.followed.companies');
     Route::get('/saved-jobs', [CandidateController::class, 'savedJobs'])->name('candidate.saved.jobs');
     Route::delete('/job/unsave/{id}', [CandidateController::class, 'unsave'])->name('job.unsave');  
+    Route::get('/candidates/list', [EmployerController::class, 'index'])->name('candidates.index');
+    Route::get('/candidate-detail/{slug}', [EmployerController::class, 'show'])->name('candidate.detail');
+
 });
 
 Route::middleware(['auth'])->group(function () {

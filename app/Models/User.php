@@ -90,6 +90,39 @@ class User extends Authenticatable
         return cache()->has('user-is-online-' . $this->id);
     }
 
+    protected static function booted()
+    {
+        static::creating(function ($user) {
+            $user->slug = Str::slug($user->name);
+        });
+
+        static::updating(function ($user) {
+            $user->slug = Str::slug($user->name);
+        });
+    }
+
+    public function education()
+    {
+        return $this->hasMany(Education::class);
+    }
+
+    public function experience()
+    {
+        return $this->hasMany(Experience::class);
+    }
+
+    public function awards()
+    {
+        return $this->hasMany(Awards::class);
+    }
+
+    public function resumes()
+    {
+        return $this->hasMany(Resume::class);
+    }
+
+
+
 
 
 
