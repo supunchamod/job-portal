@@ -38,6 +38,17 @@ Route::middleware(['auth', 'role:employer'])->group(function(){
     Route::get('/employer', [HomeController::class, 'employerDashboard'])->name('employer.dashboard');
 });
 
+Route::middleware(['auth', 'role:employer'])->group(function () {
+    Route::put('/employer/update', [EmployerController::class, 'update'])->name('employer.update');
+    Route::get('/employer/my-job', [EmployerController::class, 'myjobs'])->name('employer.myjobs');
+    Route::delete('/my-jobs/{id}', [EmployerController::class, 'destroy'])->name('jobs.destroy');
+    Route::get('/employer/jobs/create', [EmployerController::class, 'create'])->name('jobs.create');
+    Route::post('/jobs', [JobController::class, 'store'])->name('jobs.store');
+
+});
+
+
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -63,13 +74,17 @@ Route::middleware(['auth'])->group(function () {
 Route::middleware(['auth'])->group(function () {
     Route::get('/candidate-profile/edit', [ProfileController::class, 'edit'])->name('candidate-profile.edit');
     Route::post('/candidate-profile/update', [CandidateController::class, 'update'])->name('candidate-profile.update');
-    Route::get('/employer/list', [CandidateController::class, 'employer'])->name('employer');
+    Route::get('/employer/list', [CandidateController::class, 'employer'])->name('employer.list');
     Route::get('/companies/{slug}', [CandidateController::class, 'show'])->name('company.show');
     Route::get('/follow/company', [CandidateController::class, 'followCompany'])->name('candidate.followed.companies');
     Route::get('/saved-jobs', [CandidateController::class, 'savedJobs'])->name('candidate.saved.jobs');
     Route::delete('/job/unsave/{id}', [CandidateController::class, 'unsave'])->name('job.unsave');  
     Route::get('/candidates/list', [EmployerController::class, 'index'])->name('candidates.index');
     Route::get('/candidate-detail/{slug}', [EmployerController::class, 'show'])->name('candidate.detail');
+    Route::get('/employer/dashboard', [EmployerController::class, 'dashboard'])->name('employer.dashboard');
+    Route::get('/employer/profile', [EmployerController::class, 'profile'])->name('employer.profile');
+
+
 
 });
 

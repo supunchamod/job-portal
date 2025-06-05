@@ -37,7 +37,7 @@
                                                 </ul>
                                             </li>
                                             
-                                            <li><a href="/employer">Employers<span class="submenu-indicator"></span></a></li>
+                                            <li><a href="/employer/list">Employers<span class="submenu-indicator"></span></a></li>
                                             
                                             <li><a href="JavaScript:Void(0);">Pages<span class="submenu-indicator"></span></a>
                                                 <ul class="nav-dropdown nav-submenu">
@@ -78,7 +78,7 @@
                                                     </div>
                                                 </div>
                                                 <ul>
-                                                    <li><a href="{{ route('candidate.dashboard') }}"><i class="fa fa-tachometer-alt"></i>Dashboard</a></li>                                  
+                                                    <li><a href="{{ route('employer.list') }}"><i class="fa fa-tachometer-alt"></i>Dashboard</a></li>                                  
                                                     <li><a href="/my-profile"><i class="fa fa-user-tie"></i>My Profile</a></li>                                 
                                                     <li><a href="/candidate/resume"><i class="fa fa-file"></i>My Resume</a></li>
                                                     <li><a href="#"><i class="fa-solid fa-bookmark"></i>Saved Resume</a></li>
@@ -108,7 +108,7 @@
                                             
                                             <li><a href="JavaScript:Void(0);">For Employer<span class="submenu-indicator"></span></a>
                                                 <ul class="nav-dropdown nav-submenu">
-                                                        <a href="employer-dashboard.html">Employer Dashboard<span class="new-update">New</span></a>                                
+                                                        <a href="/employer/dashboard">Employer Dashboard<span class="new-update">New</span></a>                                
                                                     </li>
                                                 </ul>
                                             </li>

@@ -178,9 +178,6 @@
                                             </div>
                                         </div>
 
-                                    </div>
-                                </div>
-
 								
 								<div class="single-cdtsr-block">
                                     <div class="single-cdtsr-header"><h5>Resumes</h5></div>
@@ -216,7 +213,7 @@
                                     <div class="single-cdtsr-header"><h5>All Experience</h5></div>
                                     <div class="single-cdtsr-body">
                                         <div class="experinc-usr-groups">
-                                            @forelse ($candidate->experience as $experience)
+                                            @forelse ($candidate->experiences as $experience)
                                                 <div class="single-experinc-block">
                                                     <div class="single-experinc-lft">
                                                         <div class="experinc-thumbs">
@@ -249,7 +246,7 @@
                                     <div class="single-cdtsr-header"><h5>Educations</h5></div>
                                     <div class="single-cdtsr-body">
                                         <div class="educations-usr-groups">
-                                            @forelse ($candidate->education as $education)
+                                            @forelse ($candidate->educations as $education)
                                                 <div class="single-educations-block">
                                                     <div class="single-educations-lft">
                                                         <div class="educations-thumbs">

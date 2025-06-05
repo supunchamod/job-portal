@@ -99,9 +99,8 @@ class CandidateController extends Controller
         $reviews = $company->reviews()->with('user')->paginate(5);
 
         $user = auth()->user();
-        $notifications = $user->notifications()->latest()->take(5)->get();
 
-        return view('candidate.employer-details', compact('company', 'reviews','notifications'));
+        return view('candidate.employer-details', compact('company', 'reviews'));
     }
 
     public function followCompany(Request $request)

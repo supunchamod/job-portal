@@ -101,12 +101,12 @@ class User extends Authenticatable
         });
     }
 
-    public function education()
+    public function educations()
     {
         return $this->hasMany(Education::class);
     }
 
-    public function experience()
+    public function experiences()
     {
         return $this->hasMany(Experience::class);
     }
@@ -120,6 +120,11 @@ class User extends Authenticatable
     {
         return $this->hasMany(Resume::class);
     }
+    public function company()
+    {
+        return $this->hasOne(Company::class);
+    }
+
 
 
 

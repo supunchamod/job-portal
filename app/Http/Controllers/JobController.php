@@ -138,9 +138,48 @@ class JobController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+     public function store(Request $request)
     {
-        //
+        // Validate form inputs
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required|string|max:1000',
+            'category_id' => 'required|integer',
+            'type' => 'required|string',
+            'job_level' => 'required|string',
+            'experience' => 'required|string',
+            'qualification' => 'required|string',
+            'gender' => 'nullable|string',
+            'min_salary' => 'nullable|numeric',
+            'max_salary' => 'nullable|numeric|gte:min_salary',
+            'expired_date' => 'required|date|after:today',
+            'job_fee_type' => 'required|string',
+            'skills' => 'nullable|string',
+            'permanent_address' => 'nullable|string|max:255',
+            'temporary_address' => 'nullable|string|max:255',
+        ]);
+
+        // Create new job record (adjust fields according to your DB schema)
+        $job = Job::create([
+            'title' => $validated['title'],
+            'description' => $validated['description'],
+            'category_id' => $validated['category_id'],
+            'type' => $validated['type'],
+            'job_level' => $validated['job_level'],
+            'experience' => $validated['experience'],
+            'qualification' => $validated['qualification'],
+            'gender' => $validated['gender'] ?? null,
+            'min_salary' => $validated['min_salary'] ?? null,
+            'max_salary' => $validated['max_salary'] ?? null,
+            'deadline' => $validated['expired_date'],
+            'job_fee_type' => $validated['job_fee_type'],
+            'skills' => $validated['skills'] ?? null,
+            'permanent_address' => $validated['permanent_address'] ?? null,
+            'temporary_address' => $validated['temporary_address'] ?? null,
+        ]);
+
+        // Redirect somewhere with success message
+        return redirect()->route('jobs.create')->with('success', 'Job posted successfully!');
     }
 
     /**
@@ -187,6 +226,17 @@ class JobController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $job = Job::findOrFail($id);
+
+        // Optional: check if the authenticated employer owns this job
+        if (auth()->id() !== $job->user_id) {
+            abort(403);
+        }
+
+        $job->delete();
+
+        return redirect()->back()->with('success', 'Job deleted successfully.');
     }
 }
+
+

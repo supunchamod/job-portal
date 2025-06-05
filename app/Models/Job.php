@@ -42,5 +42,11 @@ class Job extends Model
         return $this->belongsToMany(User::class, 'saved_jobs')->withTimestamps();
     }
 
+    public function applications()
+    {
+        return $this->hasMany(JobApplication::class);
+    }
+
+
 
 }

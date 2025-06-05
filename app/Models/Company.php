@@ -10,17 +10,10 @@ class Company extends Model
     use HasFactory;
 
      protected $fillable = [
-        'name',
-        'slug',
-        'description',
-        'logo',
-        'website',
-        'email',
-        'location',
-        'company_size',
-        'established',
-        'company_type'
+    'name', 'email', 'phone', 'location', 'company_size', 'established',
+    'website', 'facebook_link', 'linkedin_link', 'description', 'logo', 'user_id',
     ];
+
 
     public function services()
     {
@@ -51,6 +44,12 @@ class Company extends Model
     {
         return $this->hasMany(Review::class);
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
 
 
 
