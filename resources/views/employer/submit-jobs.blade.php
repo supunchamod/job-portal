@@ -59,6 +59,17 @@
 					</div>
 
                 <div class="dashboard-widg-bar d-block">
+
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
                     <!-- Card Row -->
                     <div class="card">
                         <div class="card-header">
@@ -80,11 +91,36 @@
 
                                     <div class="col-xl-12 col-lg-12 col-md-12">
                                         <div class="form-group">
+                                            <label for="short_description">Short Description</label>
+                                            <input type="text" class="form-control" name="short_description" id="short_description" value="{{ old('short_description') }}">
+                                            @error('short_description') <small class="text-danger">{{ $message }}</small> @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xl-12 col-lg-12 col-md-12">
+                                        <div class="form-group">
                                             <label for="description">Job Description</label>
-                                            <input type="text" class="form-control" name="description" id="description" value="{{ old('description') }}">
+                                            <textarea name="description" id="description" class="form-control">{{ old('description') }}</textarea>
                                             @error('description') <small class="text-danger">{{ $message }}</small> @enderror
                                         </div>
                                     </div>
+
+                                    <div class="col-xl-12 col-lg-12 col-md-12">
+                                        <div class="form-group">
+                                            <label for="responsibilities">Responsibilities</label>
+                                            <textarea name="responsibilities" id="responsibilities" class="form-control">{{ old('responsibilities') }}</textarea>
+                                            @error('responsibilities') <small class="text-danger">{{ $message }}</small> @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xl-12 col-lg-12 col-md-12">
+                                        <div class="form-group">
+                                            <label for="requirements">Requirements</label>
+                                            <textarea name="requirements" id="requirements" class="form-control">{{ old('requirements') }}</textarea>
+                                            @error('requirements') <small class="text-danger">{{ $message }}</small> @enderror
+                                        </div>
+                                    </div>
+
 
                                     <div class="col-xl-6 col-lg-6 col-md-12">
                                         <div class="form-group">
@@ -102,7 +138,7 @@
                                             @error('category_id') <small class="text-danger">{{ $message }}</small> @enderror
                                         </div>
                                     </div>
-                                    
+
                                     <div class="col-xl-6 col-lg-6 col-md-12">
                                         <div class="form-group">
                                             <label for="type">Job Type</label>
@@ -119,6 +155,22 @@
                                             @error('type') <small class="text-danger">{{ $message }}</small> @enderror
                                         </div>
                                     </div>
+
+                                    <div class="col-xl-6 col-lg-6 col-md-12">
+                                        <div class="form-group">
+                                            <label for="job_place">Job Place</label>
+                                            <div class="select-ops">
+                                                <select name="job_place" id="job_place" class="form-control">
+                                                    <option value="">-- Select Job Place --</option>
+                                                    <option value="remote" @selected(old('job_place') == 'remote')>Remote</option>
+                                                    <option value="on-site" @selected(old('job_place') == 'on-site')>On-site</option>
+                                                    <option value="hybrid" @selected(old('job_place') == 'hybrid')>Hybrid</option>
+                                                </select>
+                                            </div>
+                                            @error('job_place') <small class="text-danger">{{ $message }}</small> @enderror
+                                        </div>
+                                    </div>
+
 
                                     <div class="col-xl-6 col-lg-6 col-md-12">
                                         <div class="form-group">
@@ -206,6 +258,24 @@
 
                                     <div class="col-xl-6 col-lg-6 col-md-12">
                                         <div class="form-group">
+                                            <label for="total_openings">Total Openings</label>
+                                            <div class="select-ops">
+                                                <select name="total_openings" id="total_openings" class="form-control">
+                                                    <option value="">-- Select Total Openings --</option>
+                                                    @foreach(['1', '2', '3', '4', '5', '6', '10+'] as $option)
+                                                        <option value="{{ $option }}" @selected(old('total_openings') == $option)>
+                                                            {{ $option }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            @error('total_openings') <small class="text-danger">{{ $message }}</small> @enderror
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-xl-6 col-lg-6 col-md-12">
+                                        <div class="form-group">
                                             <label for="expired_date">Job Expired Date</label>
                                             <input type="date" class="form-control" name="expired_date" id="expired_date" value="{{ old('expired_date') }}">
                                             @error('expired_date') <small class="text-danger">{{ $message }}</small> @enderror
@@ -257,5 +327,23 @@
 			</div>
 			<!-- ======================= dashboard Detail End ======================== -->
 
+<script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace('description');
+    CKEDITOR.replace('responsibilities');
+    CKEDITOR.replace('requirements');
+</script>
+
+@if(session('success'))
+<script>
+    Swal.fire({
+        icon: 'success',
+        title: 'Success',
+        text: '{{ session("success") }}',
+        timer: 2000,
+        showConfirmButton: false
+    });
+</script>
+@endif
 
 @endsection

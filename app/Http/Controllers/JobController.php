@@ -9,6 +9,8 @@ use App\Models\Company;
 use App\Models\JobApplication;
 use Illuminate\Support\Facades\Auth;
 use App\Services\NotificationService;
+use Illuminate\Support\Str;
+
 
 
 class JobController extends Controller
@@ -40,10 +42,8 @@ class JobController extends Controller
         $categories = Category::withCount('jobs')->get();
 
         $user = auth()->user();
-        $notifications = $user->notifications()->latest()->take(5)->get();
 
-
-        return view('jobs.jobs', compact('jobs', 'categories','notifications'));
+        return view('jobs.jobs', compact('jobs', 'categories'));
     }
 
     public function apply($jobId)
@@ -139,7 +139,7 @@ class JobController extends Controller
      * @return \Illuminate\Http\Response
      */
      public function store(Request $request)
-    {
+    { 
         // Validate form inputs
         $validated = $request->validate([
             'title' => 'required|string|max:255',
@@ -149,20 +149,32 @@ class JobController extends Controller
             'job_level' => 'required|string',
             'experience' => 'required|string',
             'qualification' => 'required|string',
+            'short_description' => 'required|string',
+            'responsibilities' => 'required|string',
+            'requirements' => 'required|string',
             'gender' => 'nullable|string',
             'min_salary' => 'nullable|numeric',
             'max_salary' => 'nullable|numeric|gte:min_salary',
             'expired_date' => 'required|date|after:today',
             'job_fee_type' => 'required|string',
             'skills' => 'nullable|string',
+            'job_place' => 'nullable|string',
             'permanent_address' => 'nullable|string|max:255',
-            'temporary_address' => 'nullable|string|max:255',
+            'total_openings' => 'nullable|in:1,2,3,4,5,6,10+',
+
+            
         ]);
+
+        $slug = Str::slug($validated['title']) . '-' . uniqid();
 
         // Create new job record (adjust fields according to your DB schema)
         $job = Job::create([
             'title' => $validated['title'],
+            'slug' => $slug, // ✅ Set slug
+            'short_description' => $validated['short_description'],
             'description' => $validated['description'],
+            'responsibilities' => $validated['responsibilities'],
+            'requirements' => $validated['requirements'],
             'category_id' => $validated['category_id'],
             'type' => $validated['type'],
             'job_level' => $validated['job_level'],
@@ -175,11 +187,13 @@ class JobController extends Controller
             'job_fee_type' => $validated['job_fee_type'],
             'skills' => $validated['skills'] ?? null,
             'permanent_address' => $validated['permanent_address'] ?? null,
-            'temporary_address' => $validated['temporary_address'] ?? null,
+            'total_openings' => $request->total_openings,
+            'company_id' => auth()->user()->company?->id,
+             'user_id' => auth()->user(),
         ]);
 
         // Redirect somewhere with success message
-        return redirect()->route('jobs.create')->with('success', 'Job posted successfully!');
+         return back()->with('success', 'Job application submitted successfully!');
     }
 
     /**
@@ -191,8 +205,7 @@ class JobController extends Controller
     public function show(Job $job)
     {
         $user = auth()->user();
-        $notifications = $user->notifications()->latest()->take(5)->get();
-        return view('jobs.show', compact('job','notifications'));
+        return view('jobs.show', compact('job'));
     }
 
     /**

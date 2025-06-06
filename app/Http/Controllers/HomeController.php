@@ -39,12 +39,11 @@ class HomeController extends Controller
                 $query->select('id', 'name', 'logo', 'slug');
             }])
             ->where('is_featured', true)
-            ->where('is_active', true)
             ->where('deadline', '>=', now())
             ->orderBy('is_urgent', 'desc')
             ->orderBy('created_at', 'desc')
             ->take(8)
-            ->get(['id', 'title', 'slug', 'company_id', 'salary', 'type', 'location', 'is_urgent', 'created_at']);
+            ->get(['id', 'title', 'slug', 'company_id', 'min_salary','max_salary', 'type', 'total_openings', 'is_urgent', 'created_at']);
 
          $companies = Company::with(['services', 'jobs'])
         ->withCount(['jobs as jobs_count' => function($query) {
@@ -79,17 +78,16 @@ class HomeController extends Controller
             ->get();
 
         // Get featured jobs with eager loading (optimized for performance)
-        $featuredJobs = Job::query()
+         $featuredJobs = Job::query()
             ->with(['company' => function($query) {
                 $query->select('id', 'name', 'logo', 'slug');
             }])
             ->where('is_featured', true)
-            ->where('is_active', true)
             ->where('deadline', '>=', now())
             ->orderBy('is_urgent', 'desc')
             ->orderBy('created_at', 'desc')
             ->take(8)
-            ->get(['id', 'title', 'slug', 'company_id', 'salary', 'type', 'location', 'is_urgent', 'created_at']);
+            ->get(['id', 'title', 'slug', 'company_id', 'min_salary','max_salary', 'type', 'total_openings', 'is_urgent', 'created_at']);
 
          $companies = Company::with(['services', 'jobs'])
         ->withCount(['jobs as jobs_count' => function($query) {
@@ -125,12 +123,11 @@ class HomeController extends Controller
                 $query->select('id', 'name', 'logo', 'slug');
             }])
             ->where('is_featured', true)
-            ->where('is_active', true)
             ->where('deadline', '>=', now())
             ->orderBy('is_urgent', 'desc')
             ->orderBy('created_at', 'desc')
             ->take(8)
-            ->get(['id', 'title', 'slug', 'company_id', 'salary', 'type', 'location', 'is_urgent', 'created_at']);
+            ->get(['id', 'title', 'slug', 'company_id', 'min_salary','max_salary', 'type', 'total_openings', 'is_urgent', 'created_at']);
 
          $companies = Company::with(['services', 'jobs'])
         ->withCount(['jobs as jobs_count' => function($query) {

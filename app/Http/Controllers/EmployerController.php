@@ -102,6 +102,13 @@ class EmployerController extends Controller
     }
         
 
+    public function manageApplicants()
+    {
+        $applications = JobApplication::with(['user', 'job'])->latest()->paginate(10);
+        return view('employer.applicants', compact('applications'));
+    }
+
+
 
 
 

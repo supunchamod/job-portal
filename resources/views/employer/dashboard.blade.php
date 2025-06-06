@@ -31,13 +31,20 @@
 								<li><a href="/employer/profile"><i class="fa-regular fa-user me-2"></i>User Profile </a></li>
 								<li><a href="/employer/my-job"><i class="fa-solid fa-business-time me-2"></i>My Jobs</a></li>
 								<li><a href="/employer/jobs/create"><i class="fa-solid fa-pen-ruler me-2"></i>Submit Jobs</a></li>
-								<li><a href="employer-applicants-jobs.html"><i class="fa-solid fa-user-group me-2"></i>Applicants Jobs</a></li>
-								<li><a href="employer-shortlist-candidates.html"><i class="fa-solid fa-user-clock me-2"></i>Shortlisted Candidates</a></li>
-								<li><a href="employer-package.html"><i class="fa-solid fa-wallet me-2"></i>Package</a></li>
+								<li><a href="/employer/applicants"><i class="fa-solid fa-user-group me-2"></i>Applicants Jobs</a></li>
+								<!-- <li><a href="employer-shortlist-candidates.html"><i class="fa-solid fa-user-clock me-2"></i>Shortlisted Candidates</a></li>
+								<li><a href="employer-package.html"><i class="fa-solid fa-wallet me-2"></i>Package</a></li> -->
 								<li><a href="employer-messages.html"><i class="fa-solid fa-comments me-2"></i>Messages</a></li>
-								<li><a href="employer-change-password.html"><i class="fa-solid fa-unlock-keyhole me-2"></i>Change Password</a></li>
-								<li><a href="employer-delete-account.html"><i class="fa-solid fa-trash-can me-2"></i>Delete Account</a></li>
-								<li><a href="index.html"><i class="fa-solid fa-power-off me-2"></i>Log Out</a></li>
+								<li><a href="/password/reset"><i class="fa-solid fa-unlock-keyhole me-2"></i>Change Password</a></li>
+								<li><a href="/candidate/delete-account"><i class="fa-solid fa-trash-can me-2"></i>Delete Account</a></li>
+								<li>
+									<form method="POST" action="{{ route('logout') }}" id="logout-form">
+										@csrf
+										<a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+											<i class="fa-solid fa-power-off me-2"></i>Log Out
+										</a>
+									</form>
+								</li>
 							</ul>
 						</div>					
 					</div>

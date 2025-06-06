@@ -9,16 +9,28 @@ class Job extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
+     protected $fillable = [
         'title',
         'slug',
+        'short_description',
         'description',
+        'responsibilities',
+        'requirements',
         'category_id',
         'company_id',
-        'location',
-        'salary',
         'type',
-        'deadline'
+        'job_level',
+        'experience',
+        'qualification',
+        'gender',
+        'min_salary',
+        'max_salary',
+        'deadline',
+        'job_fee_type',
+        'skills',
+        'permanent_address',
+        'job_place',
+        'total_openings',
     ];
 
     public function company()
